@@ -64,12 +64,27 @@ void posicionaBarcos(char tabuleiro[10][10]){
     
 }
 
+void verificaTiro(char tabuleiro[10][10], int linhaJogada, int colunaJogada, int *pontos, string *mensagem){
+    //Verifica pontos ao add
+        switch (tabuleiro[linhaJogada][colunaJogada]){
+        case 'P': *pontos += 10;
+            break;
+            *mensagem = "Voce acertou um barco pequeno";
+        case 'A':
+        *mensagem = "Voce acertou a agua";
+        break;
+        }
+}
+ 
 void jogo(){
 
     char tabuleiro[10][10], mascara[10][10]; //Tabuleiro do jogo
     int linha, coluna; // auxuliares da navegacao
     int linhaJogada, colunaJogada;
     int estadoDeJogo = 1; // 1 = jogo acontecendo 0 igual a fim de jogo
+    int pontos;
+    string mensagem;
+    int tentivas, maxTentativas = 10;
     //Chama funcao com parametro tabuleiro
     iniciaTabuleiro(tabuleiro, mascara);
 
@@ -78,21 +93,31 @@ void jogo(){
 
 
 
-    while(estadoDeJogo == 1){
+    while(tentivas < maxTentativas){
 
         limpaTela();
 
         //chama funcao para exiber o tabuleiro
         exibeTabuleiro(tabuleiro, mascara);
 
+        cout << "\nPontos: " << pontos << ", Tentativas Restantes: " << maxTentativas - tentivas;
+        cout << "\n Mensagem " << mensagem;
         cout << "\nDigite uma linha:";
         cin >> linhaJogada;
         cout << "\nDigite uma coluna:";
         cin >> colunaJogada;
 
+        //Verifica oq aconteceu
+        verificaTiro(tabuleiro, linhaJogada, colunaJogada, &pontos, &mensagem);
+        tentivas ++;
         //Revela o que esta no tabuleiro
         mascara[linhaJogada][colunaJogada] = tabuleiro[linhaJogada][colunaJogada];
     }
+
+    cout << "Fim de Jogo, o que deseja fazer?";
+        cout << "\n1-Jogar novamente?";
+        cout << "\n2-Ir para o Menu";
+        cout << "\n3-Sair";
 
 }
 
