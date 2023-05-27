@@ -211,7 +211,7 @@ void menuInicial(){
         case 2:
             //Mostra informacoes do Jogo
             limpaTela();
-            cout << "Jogo Desenvolvido por Mateus em 2022 Curso de Completo de linguagem C e C++ - Iniciante ao Avancado";
+            cout << "Jogo Desenvolvido por Mateus em 2023 Curso de Completo de linguagem C e C++ - Iniciante ao Avancado";
             cout << "\n1 - Voltar";
             cout << "\n2 - Sair";
             cin >> opcao;
